@@ -1,0 +1,199 @@
+.TH "src/AODjustify.c" 3 "Sun Nov 11 2018" "AODjustify" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/AODjustify.c \- 
+Programme de justification de texte\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include <time\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+\fC#include <stdbool\&.h>\fP
+.br
+\fC#include <sys/mman\&.h>\fP
+.br
+\fC#include <sys/stat\&.h>\fP
+.br
+\fC#include <fcntl\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBisvalueinarray\fP (long long val, long long *arr, long long size)"
+.br
+.RI "\fIVerifie si val est dans arr\&. \fP"
+.ti -1c
+.RI "long long \fBlongueur_entre_mots\fP (char **words, long long i, long long j)"
+.br
+.RI "\fICalcule le nombre de caracteres situes entre les mots i et j inclus, en supposant qu'il n'y a qu'un espace entre chaque mot\&. \fP"
+.ti -1c
+.RI "long long * \fBtirage_alea\fP (long long nb_tirages_init, long long maxi)"
+.br
+.RI "\fIEffectue nb_tirages_init tirages aléatoires sans remise, avec chaque valeur comprise dans [0, maxi-1]\&. \fP"
+.ti -1c
+.RI "void \fBprint_espace\fP (FILE *fichier, long long width, long long i, long long k, long long length, bool esp_sup)"
+.br
+.RI "\fIPour un espace d'une ligne donnée (définie par son premier mot i et son dernier mot k), renvoie le nombre d'espaces nécessaires à cet endroit\&. On y ajoute éventuellement un espace supplémentaire\&. \fP"
+.ti -1c
+.RI "char * \fBajout_extention_entree\fP (char *nom)"
+.br
+.RI "\fIAjout de l'extention du fichier d'entree\&. \fP"
+.ti -1c
+.RI "char * \fBajout_extention_sortie\fP (char *nom)"
+.br
+.RI "\fIAjout de l'extention du fichier de sortie\&. \fP"
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *argv[])"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Programme de justification de texte\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Jean-Baptiste Bonnechère 
+.PP
+Raphaël Prêtre 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+1\&.0 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+5 novembre 2018
+.RE
+.PP
+Programme de justification de texte par programmation dynamique\&. 
+.SH "Function Documentation"
+.PP 
+.SS "char * ajout_extention_entree (char *nom)"
+
+.PP
+Ajout de l'extention du fichier d'entree\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInom,:\fP nom du fichier 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+nom du fichier avec le \&.in final 
+.RE
+.PP
+
+.SS "char * ajout_extention_sortie (char *nom)"
+
+.PP
+Ajout de l'extention du fichier de sortie\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInom,:\fP nom du fichier 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+nom du fichier avec le \&.out final 
+.RE
+.PP
+
+.SS "bool isvalueinarray (long longval, long long *arr, long longsize)"
+
+.PP
+Verifie si val est dans arr\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIval,:\fP valeur à trouver 
+.br
+\fIarr,:\fP tableau de valeur 
+.br
+\fIsize,:\fP taille du tableau 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true si val dans arr, false sinon\&. 
+.RE
+.PP
+
+.SS "long long longueur_entre_mots (char **words, long longi, long longj)"
+
+.PP
+Calcule le nombre de caracteres situes entre les mots i et j inclus, en supposant qu'il n'y a qu'un espace entre chaque mot\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwords,:\fP liste de mots 
+.br
+\fIi,:\fP premier mot 
+.br
+\fIj,:\fP dernier mot 
+.RE
+.PP
+
+.SS "void print_espace (FILE *fichier, long longwidth, long longi, long longk, long longlength, boolesp_sup)"
+
+.PP
+Pour un espace d'une ligne donnée (définie par son premier mot i et son dernier mot k), renvoie le nombre d'espaces nécessaires à cet endroit\&. On y ajoute éventuellement un espace supplémentaire\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfichier,:\fP fichier dans lequel écrire 
+.br
+\fIwidth,:\fP largeur de la page 
+.br
+\fIi,:\fP premier mot de la ligne 
+.br
+\fIk,:\fP dernier mot de la ligne 
+.br
+\fIlength,:\fP nombre de caractères imprimables sur la ligne en y ajoutant un espace entre chaque mot 
+.br
+\fIesp_sup,:\fP ajout d'un espace supplementaire ou non 
+.RE
+.PP
+
+.SS "long long * tirage_alea (long longnb_tirages_init, long longmaxi)"
+
+.PP
+Effectue nb_tirages_init tirages aléatoires sans remise, avec chaque valeur comprise dans [0, maxi-1]\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInb_tirages_init,:\fP nombre de tirages à réaliser 
+.br
+\fImaxi,:\fP seuil de valeur tirée 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+tableau des valeurs tirées 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for AODjustify from the source code\&.
